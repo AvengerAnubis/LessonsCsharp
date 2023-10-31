@@ -32,7 +32,12 @@
 }
 static string RgbToHex(byte red, byte green, byte blue)
 {
-    return $"#{Convert.ToHexString(new byte[] {red, green, blue})}";
+    string hex = $"#{Convert.ToHexString(new byte[] {red, green, blue})}";
+    if (hex[1] == hex[2] && hex[3] == hex[4] && hex[5] == hex[6])
+    {
+        hex = hex[0].ToString() + hex[1] + hex[3] + hex[5];
+    }
+    return hex;
 }
 
 string hex = "#f01";
@@ -47,7 +52,7 @@ for (int i = 0; i < 3 && rgb != null; i++)
 Console.WriteLine("\n");
 
 byte[] rgb_array = {120, 22, 55};
-byte r = 120, g = 22, b = 55;
+byte r = 0, g = 0, b = 0;
 Console.WriteLine($"{r} {g} {b}");
 
 Console.WriteLine(RgbToHex(r, g, b));
